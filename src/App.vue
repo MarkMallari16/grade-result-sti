@@ -11,6 +11,7 @@
   <main  class="flex justify-center m-5 lg:m-0">
    <div class="bg-base-300 h-full w-full   lg:w-1/3 rounded-lg p-10">
       <div>
+
       <label for="">Enter Grade in Prelim</label>
       <input type="text" id="prelim" class="mt-1 block input input-bordered w-full">
       </div>
@@ -33,6 +34,7 @@
     <div class="mt-4">
       <button class="uppercase font-black btn btn-primary w-full">Calculate</button>
     </div>
+    
    </div>
   </main>
 </template>
