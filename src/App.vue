@@ -25,7 +25,6 @@ const calculateGrade = () => {
 <template>
   <header class="mb-4 text-center p-5">
     <h1 class="text-4xl font-black">Grades Calculator</h1>
-    <p>Mark Mallari</p>
   </header>
 
   <main >
