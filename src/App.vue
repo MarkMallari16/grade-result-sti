@@ -31,7 +31,7 @@ const calculateGrade = () => {
   }
 
   if (resultRef.value) {
-    resultRef.value.scrollIntoView({ behavior: "smooth" });
+    resultRef.value.showModal();
   }
 };
 </script>
@@ -96,15 +96,24 @@ const calculateGrade = () => {
           </button>
         </div>
       </div>
-      <dialog id="my_modal_1" class="modal">
+      <dialog class="modal" ref="resultRef">
         <div class="modal-box">
-          <div
-            ref="resultRef"
-            v-if="finalGrade !== null"
-            class="mt-10 bg-base-300 h-full w-full lg:w-1/3 rounded-lg p-5"
-          >
+          <form method="dialog">
+            <div class="flex justify-between items-center">
+              <h1 class="text-2xl font-bold">Result</h1>
+              <button className="btn btn-sm btn-circle btn-ghost  right-2 top-2">
+                ✕
+              </button>
+            </div>
+          </form>
+          <div v-if="finalGrade !== null" class="mt-5 h-full w-full rounded-lg">
             <p class="text-lg font-bold">Final Grade: {{ finalGrade }}</p>
-            <p class="text-lg font-bold">Remarks: {{ remarks }}</p>
+            <p class="text-lg font-bold">
+              Remarks:
+              <span :class="finalGrade.value >= 75 ? 'text-green-500' : 'text-red-500'">{{
+                remarks
+              }}</span>
+            </p>
           </div>
         </div>
       </dialog>
