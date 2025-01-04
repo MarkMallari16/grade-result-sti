@@ -6,7 +6,10 @@ import { ref } from 'vue';
   const preFinal = ref('');
   const finals = ref('');
   const finalGrade = ref(null);
-  
+  const remarks = ref(null);
+
+  const resultRef = ref(null);
+
 const calculateGrade = () => {
   const TERM_PERCENTAGE = 0.2;
   const FINALS_TERM_PERCENTAGE = 0.4;
@@ -19,6 +22,16 @@ const calculateGrade = () => {
   finalGrade.value = (
     (p+m+pF) * TERM_PERCENTAGE + f * FINALS_TERM_PERCENTAGE
   ).toFixed(2);
+
+  if (finalGrade.value >= 75) {
+    remarks.value = 'Passed';
+  } else {
+    remarks.value = 'Failed';
+  }
+
+  if (resultRef.value){
+    resultRef.value.scrollIntoView({behavior: 'smooth'});
+  }
 }
 </script>
 
@@ -58,8 +71,9 @@ const calculateGrade = () => {
 
 
     </div>
-  <div v-if="finalGrade !== null" class="mt-10 bg-base-300 h-full w-full   lg:w-1/3 rounded-lg p-10">
+  <div ref="resultRef" v-if="finalGrade !== null" class="mt-10 bg-base-300 h-full w-full   lg:w-1/3 rounded-lg p-5">
     <p class="text-lg font-bold">Final Grade: {{ finalGrade }}</p>
+    <p class="text-lg font-bold">Remarks: {{ remarks }}</p>
    </div>
    </div>
   </main>
