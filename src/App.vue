@@ -6,7 +6,7 @@ import { ref } from 'vue';
   const preFinal = ref('');
   const finals = ref('');
   const finalGrade = ref(null);
-   
+  
 const calculateGrade = () => {
   const TERM_PERCENTAGE = 0.2;
   const FINALS_TERM_PERCENTAGE = 0.4;
@@ -26,7 +26,6 @@ const calculateGrade = () => {
   <header class="mb-4 text-center p-5">
     <h1 class="text-4xl font-black">Grades Calculator</h1>
   </header>
-
   <main >
    <div class="flex flex-col justify-center items-center m-5 lg:m-0">
  
@@ -43,8 +42,8 @@ const calculateGrade = () => {
           </div>
 
           <div class="mt-4">
-          <label for="preFinal">Pre-Final</label>
-          <input v-model="preFinal" type="text" id="preFinal" class="mt-1 block input input-bordered w-full" placeholder="Enter Grade in Pre-FInal">
+            <label for="preFinal">Pre-Final</label>
+            <input v-model="preFinal" type="text" id="preFinal" class="mt-1 block input input-bordered w-full" placeholder="Enter Grade in Pre-FInal">
           </div>
 
           <div class="mt-4">
