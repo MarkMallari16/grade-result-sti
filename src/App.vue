@@ -84,7 +84,7 @@ const validateAllFields = () => {
           <label for="prelim" class="font-medium">Prelim</label>
           <input
             v-model="prelim"
-            type="text"
+            type="number"
             id="prelim"
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Prelim"
@@ -96,7 +96,7 @@ const validateAllFields = () => {
           <label for="midterm" class="font-medium">Midterm</label>
           <input
             v-model="midterm"
-            type="text"
+            type="number"
             id="midterm"
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Midterm"
@@ -108,7 +108,7 @@ const validateAllFields = () => {
           <label for="preFinal" class="font-medium">Pre-Final</label>
           <input
             v-model="preFinal"
-            type="text"
+            type="number"
             id="preFinal"
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Pre-FInal"
@@ -120,7 +120,7 @@ const validateAllFields = () => {
           <label label for="finals" class="font-medium">Finals</label>
           <input
             v-model="finals"
-            type="text"
+            type="number"
             id="finals"
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Finals"
@@ -148,7 +148,7 @@ const validateAllFields = () => {
             </div>
           </form>
           <div v-if="finalGrade !== null" class="mt-5 h-full w-full rounded-lg">
-            <p class="text-lg font-bold">Final Grade: {{ finalGrade }}</p>
+            <p class="text-lg font-bold">Final GWA: {{ finalGrade }}</p>
             <p class="text-lg font-bold">
               Remarks:
               <span :class="finalGrade >= 75 ? 'text-green-500' : 'text-red-500'">{{
