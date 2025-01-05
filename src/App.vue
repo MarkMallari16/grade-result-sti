@@ -10,7 +10,18 @@ const remarks = ref(null);
 
 const resultRef = ref(null);
 
+const errors = ref({
+  prelim: "",
+  midterm: "",
+  preFinal: "",
+  finals: "",
+});
+
+//calculating final grade
 const calculateGrade = () => {
+  if (!validateAllFields()) {
+    return;
+  }
   const TERM_PERCENTAGE = 0.2;
   const FINALS_TERM_PERCENTAGE = 0.4;
 
@@ -34,17 +45,39 @@ const calculateGrade = () => {
     resultRef.value.showModal();
   }
 };
+const validateInput = (field, value) => {
+  if (!value) {
+    return `${field} is required!`;
+  }
+  if (isNaN(value)) {
+    return `${field} should be a number!`;
+  }
+  return null;
+};
+const validateAllFields = () => {
+  errors.value.prelim = validateInput("Prelim", prelim.value);
+  errors.value.midterm = validateInput("Midterm", midterm.value);
+  errors.value.preFinal = validateInput("Pre-Final", preFinal.value);
+  errors.value.finals = validateInput("Finals", finals.value);
+
+  return (
+    !errors.value.prelim &&
+    !errors.value.midterm &&
+    !errors.value.preFinal &&
+    !errors.value.finals
+  );
+};
 </script>
 
 <template>
-  <header class="mb-4 text-center p-5">
+  <header class="mb-1 text-center py-4">
     <h1 class="text-4xl font-black">Grades Calculator</h1>
   </header>
   <main>
     <div class="flex flex-col justify-center items-center m-5 lg:m-0">
-      <div class="bg-base-300 h-full w-full lg:w-1/3 rounded-lg p-10">
+      <div class="bg-base-200 h-full w-full lg:w-1/3 rounded-lg p-10">
         <div>
-          <label for="prelim">Prelim</label>
+          <label for="prelim" class="font-medium">Prelim</label>
           <input
             v-model="prelim"
             type="text"
@@ -52,10 +85,11 @@ const calculateGrade = () => {
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Prelim"
           />
+          <p class="mt-1 text-red-500" v-if="errors.prelim">{{ errors.prelim }}</p>
         </div>
 
         <div class="mt-4">
-          <label for="midterm">Midterm</label>
+          <label for="midterm" class="font-medium">Midterm</label>
           <input
             v-model="midterm"
             type="text"
@@ -63,10 +97,11 @@ const calculateGrade = () => {
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Midterm"
           />
+          <p class="mt-1 text-red-500" v-if="errors.midterm">{{ errors.midterm }}</p>
         </div>
 
         <div class="mt-4">
-          <label for="preFinal">Pre-Final</label>
+          <label for="preFinal" class="font-medium">Pre-Final</label>
           <input
             v-model="preFinal"
             type="text"
@@ -74,10 +109,11 @@ const calculateGrade = () => {
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Pre-FInal"
           />
+          <p class="mt-1 text-red-500" v-if="errors.preFinal">{{ errors.preFinal }}</p>
         </div>
 
         <div class="mt-4">
-          <label label for="finals">Finals</label>
+          <label label for="finals" class="font-medium">Finals</label>
           <input
             v-model="finals"
             type="text"
@@ -85,6 +121,7 @@ const calculateGrade = () => {
             class="mt-1 block input input-bordered w-full"
             placeholder="Enter Grade in Finals"
           />
+          <p class="mt-1 text-red-500" v-if="errors.finals">{{ errors.finals }}</p>
         </div>
 
         <div class="mt-4">
@@ -96,7 +133,7 @@ const calculateGrade = () => {
           </button>
         </div>
       </div>
-      <dialog class="modal" ref="resultRef">
+      <dialog class="modal" v-if="finalGrade !== null" ref="resultRef">
         <div class="modal-box">
           <form method="dialog">
             <div class="flex justify-between items-center">
@@ -106,7 +143,7 @@ const calculateGrade = () => {
               </button>
             </div>
           </form>
-          <div v-if="finalGrade !== null" class="mt-5 h-full w-full rounded-lg">
+          <div class="mt-5 h-full w-full rounded-lg">
             <p class="text-lg font-bold">Final Grade: {{ finalGrade }}</p>
             <p class="text-lg font-bold">
               Remarks:
