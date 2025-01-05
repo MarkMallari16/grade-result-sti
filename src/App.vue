@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import NavBar from "./components/NavBar.vue";
 
 const prelim = ref("");
 const midterm = ref("");
@@ -10,6 +11,7 @@ const remarks = ref(null);
 
 const resultRef = ref(null);
 
+//creating error messages
 const errors = ref({
   prelim: "",
   midterm: "",
@@ -70,8 +72,10 @@ const validateAllFields = () => {
 </script>
 
 <template>
+  <NavBar />
   <header class="mb-1 text-center py-4">
     <h1 class="text-4xl font-black">Grades Calculator</h1>
+    <p class="font-normal">Mark Mallari</p>
   </header>
   <main>
     <div class="flex flex-col justify-center items-center m-5 lg:m-0">
@@ -133,7 +137,7 @@ const validateAllFields = () => {
           </button>
         </div>
       </div>
-      <dialog class="modal" v-if="finalGrade !== null" ref="resultRef">
+      <dialog class="modal" ref="resultRef">
         <div class="modal-box">
           <form method="dialog">
             <div class="flex justify-between items-center">
@@ -143,11 +147,11 @@ const validateAllFields = () => {
               </button>
             </div>
           </form>
-          <div class="mt-5 h-full w-full rounded-lg">
+          <div v-if="finalGrade !== null" class="mt-5 h-full w-full rounded-lg">
             <p class="text-lg font-bold">Final Grade: {{ finalGrade }}</p>
             <p class="text-lg font-bold">
               Remarks:
-              <span :class="finalGrade.value >= 75 ? 'text-green-500' : 'text-red-500'">{{
+              <span :class="finalGrade >= 75 ? 'text-green-500' : 'text-red-500'">{{
                 remarks
               }}</span>
             </p>
