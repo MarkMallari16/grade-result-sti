@@ -137,6 +137,8 @@ const validateAllFields = () => {
           </button>
         </div>
       </div>
+
+      <!--Modal-->
       <dialog class="modal" ref="resultRef">
         <div class="modal-box">
           <form method="dialog">
@@ -147,17 +149,18 @@ const validateAllFields = () => {
               </button>
             </div>
           </form>
-          <div v-if="finalGrade !== null" class="mt-5 h-full w-full rounded-lg">
-            <p class="text-lg font-bold">Final GWA: {{ finalGrade }}</p>
-            <p class="text-lg font-bold">
+          <div v-if="finalGrade !== null" class=" py-5 h-full w-full rounded-lg">
+            <h1 class="text-lg font-bold mb-2">
               Remarks:
               <span :class="finalGrade >= 75 ? 'text-green-500' : 'text-red-500'">{{
                 remarks
               }}</span>
-            </p>
+            </h1>
+            <p class="text-lg font-bold">Final GWA: {{ finalGrade }}</p>
           </div>
         </div>
       </dialog>
+      <!--End Modal-->
     </div>
   </main>
 </template>
