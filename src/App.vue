@@ -84,6 +84,7 @@ const clearFields = () => {
     resultRef.value.close();
   }
 };
+
 </script>
 
 <template>
