@@ -56,6 +56,7 @@ const validateInput = (field, value) => {
   }
   return null;
 };
+//validations
 const validateAllFields = () => {
   errors.value.prelim = validateInput("Prelim", prelim.value);
   errors.value.midterm = validateInput("Midterm", midterm.value);
@@ -68,6 +69,20 @@ const validateAllFields = () => {
     !errors.value.preFinal &&
     !errors.value.finals
   );
+};
+
+//clear all fields
+const clearFields = () => {
+  prelim.value = "";
+  midterm.value = "";
+  preFinal.value = "";
+  finals.value = "";
+  finalGrade.value = null;
+  remarks.value = null;
+
+  if (resultRef.value) {
+    resultRef.value.close();
+  }
 };
 </script>
 
@@ -144,12 +159,10 @@ const validateAllFields = () => {
           <form method="dialog">
             <div class="flex justify-between items-center">
               <h1 class="text-2xl font-bold">Result</h1>
-              <button className="btn btn-sm btn-circle btn-ghost  right-2 top-2">
-                ✕
-              </button>
+              <button className="btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
             </div>
           </form>
-          <div v-if="finalGrade !== null" class=" py-5 h-full w-full rounded-lg">
+          <div v-if="finalGrade !== null" class="py-5 h-full w-full rounded-lg">
             <h1 class="text-lg font-bold mb-2">
               Remarks:
               <span :class="finalGrade >= 75 ? 'text-green-500' : 'text-red-500'">{{
@@ -157,6 +170,11 @@ const validateAllFields = () => {
               }}</span>
             </h1>
             <p class="text-lg font-bold">Final GWA: {{ finalGrade }}</p>
+            <div class="flex justify-end mt-4">
+              <button @click="clearFields" class="btn btn-secondary text-end">
+                Calculate Again
+              </button>
+            </div>
           </div>
         </div>
       </dialog>
