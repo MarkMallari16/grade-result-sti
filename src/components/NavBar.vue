@@ -1,5 +1,5 @@
 <template>
-  <nav class="mx-5">
+  <nav class="mx-0 lg:mx-5">
     <div className="navbar bg-base-100">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl font-black">Grades Calculator</a>
