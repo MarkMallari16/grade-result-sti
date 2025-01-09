@@ -22,7 +22,10 @@ const errors = ref({
   midterm: "",
   preFinal: "",
   finals: "",
-  weight: "",
+  prelimWeight: "",
+  midtermWeight: "",
+  preFinalWeight: "",
+  finalsWeight: "",
 });
 
 //calculating final grade
@@ -30,8 +33,6 @@ const calculateGrade = () => {
   if (!validateAllFields()) {
     return;
   }
-  const TERM_PERCENTAGE = 0.2;
-  const FINALS_TERM_PERCENTAGE = 0.4;
 
   const p = parseFloat(prelim.value) || 0;
   const m = parseFloat(midterm.value) || 0;
@@ -43,10 +44,7 @@ const calculateGrade = () => {
   const pFW = parseFloat(preFinalWeight.value) || 0;
   const fW = parseFloat(finalsWeight.value) || 0;
 
-  // finalGrade.value = (
-  //   (p + m + pF) * TERM_PERCENTAGE +
-  //   f * FINALS_TERM_PERCENTAGE
-  // ).toFixed(2);
+  //calculating final grade
   finalGrade.value = ((p * pW + m * mW + pF * pFW + f * fW) / 100).toFixed(2);
 
   if (finalGrade.value >= 75) {
@@ -68,6 +66,7 @@ const validateInput = (field, value) => {
   }
   return null;
 };
+
 //validations
 const validateAllFields = () => {
   errors.value.prelim = validateInput("Prelim", prelim.value);
@@ -75,11 +74,20 @@ const validateAllFields = () => {
   errors.value.preFinal = validateInput("Pre-Final", preFinal.value);
   errors.value.finals = validateInput("Finals", finals.value);
 
+  errors.value.prelimWeight = validateInput("Weight", prelimWeight.value);
+  errors.value.midtermWeight = validateInput("Weight", midtermWeight.value);
+  errors.value.preFinalWeight = validateInput("Weight", preFinalWeight.value);
+  errors.value.finalsWeight = validateInput("Weight", finalsWeight.value);
+
   return (
     !errors.value.prelim &&
     !errors.value.midterm &&
     !errors.value.preFinal &&
-    !errors.value.finals
+    !errors.value.finals &&
+    !errors.value.prelimWeight &&
+    !errors.value.midtermWeight &&
+    !errors.value.preFinalWeight &&
+    !errors.value.finalsWeight
   );
 };
 
@@ -91,6 +99,11 @@ const clearFields = () => {
   finals.value = "";
   finalGrade.value = null;
   remarks.value = null;
+
+  prelimWeight.value = null;
+  midtermWeight.value = null;
+  preFinalWeight.value = null;
+  finalsWeight.value = null;
 
   if (resultRef.value) {
     resultRef.value.close();
@@ -106,10 +119,10 @@ const clearFields = () => {
   </header>
   <main>
     <div class="flex flex-col justify-center items-center m-5 lg:m-0">
-      <div class="bg-base-200 h-full w-full lg:w-1/3 rounded-lg p-10">
+      <div class="bg-base-200 h-full w-full lg:w-1/2 rounded-lg px-5 py-10">
         <div>
           <div class="flex gap-4">
-            <div>
+            <div class="w-full">
               <label for="prelim" class="font-medium">Prelim</label>
               <input
                 v-model="prelim"
@@ -120,7 +133,7 @@ const clearFields = () => {
               />
               <p class="mt-1 text-red-500" v-if="errors.prelim">{{ errors.prelim }}</p>
             </div>
-            <div>
+            <div class="w-full">
               <label for="prelimWeight" class="font-medium">Weight</label>
               <input
                 v-model="prelimWeight"
@@ -129,14 +142,16 @@ const clearFields = () => {
                 class="mt-1 block input input-bordered w-full"
                 placeholder="Enter Weight"
               />
-              <p class="mt-1 text-red-500" v-if="errors.prelim">{{ errors.prelim }}</p>
+              <p class="mt-1 text-red-500" v-if="errors.prelimWeight">
+                {{ errors.prelimWeight }}
+              </p>
             </div>
           </div>
         </div>
 
         <div class="mt-4">
           <div class="flex gap-4">
-            <div>
+            <div class="w-full">
               <label for="midterm" class="font-medium">Midterm</label>
               <input
                 v-model="midterm"
@@ -147,7 +162,7 @@ const clearFields = () => {
               />
               <p class="mt-1 text-red-500" v-if="errors.midterm">{{ errors.midterm }}</p>
             </div>
-            <div>
+            <div class="w-full">
               <label for="midtermWeight" class="font-medium">Weight</label>
               <input
                 v-model="midtermWeight"
@@ -156,14 +171,16 @@ const clearFields = () => {
                 class="mt-1 block input input-bordered w-full"
                 placeholder="Enter Weight"
               />
-              <p class="mt-1 text-red-500" v-if="errors.prelim">{{ errors.prelim }}</p>
+              <p class="mt-1 text-red-500" v-if="errors.midtermWeight">
+                {{ errors.midtermWeight }}
+              </p>
             </div>
           </div>
         </div>
 
         <div class="mt-4">
           <div class="flex gap-4">
-            <div>
+            <div class="w-full">
               <label for="preFinal" class="font-medium">Pre-Finals</label>
               <input
                 v-model="preFinal"
@@ -176,7 +193,7 @@ const clearFields = () => {
                 {{ errors.preFinal }}
               </p>
             </div>
-            <div>
+            <div class="w-full"> 
               <label for="preFinalWeight" class="font-medium">Weight</label>
               <input
                 v-model="preFinalWeight"
@@ -185,14 +202,16 @@ const clearFields = () => {
                 class="mt-1 block input input-bordered w-full"
                 placeholder="Enter Weight"
               />
-              <p class="mt-1 text-red-500" v-if="errors.prelim">{{ errors.prelim }}</p>
+              <p class="mt-1 text-red-500" v-if="errors.preFinalWeight">
+                {{ errors.preFinalWeight }}
+              </p>
             </div>
           </div>
         </div>
 
         <div class="mt-4">
           <div class="flex gap-4">
-            <div>
+            <div class="w-full">
               <label for="finals" class="font-medium">Finals</label>
               <input
                 v-model="finals"
@@ -205,7 +224,7 @@ const clearFields = () => {
                 {{ errors.finals }}
               </p>
             </div>
-            <div>
+            <div class="w-full">
               <label for="finalsWeight" class="font-medium">Weight</label>
               <input
                 v-model="finalsWeight"
@@ -214,7 +233,9 @@ const clearFields = () => {
                 class="mt-1 block input input-bordered w-full"
                 placeholder="Enter Weight"
               />
-              <p class="mt-1 text-red-500" v-if="errors.prelim">{{ errors.prelim }}</p>
+              <p class="mt-1 text-red-500" v-if="errors.finalsWeight">
+                {{ errors.finalsWeight }}
+              </p>
             </div>
           </div>
         </div>
