@@ -113,7 +113,7 @@ const clearFields = () => {
 
 <template>
   <NavBar />
-  <header class="mb-1 text-center py-4">
+  <header class="mt-8 mb-4 text-center">
     <h1 class="text-4xl font-black">Grades Calculator</h1>
     <p class="font-normal">Mark Mallari</p>
   </header>
