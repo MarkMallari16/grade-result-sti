@@ -7,15 +7,7 @@
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li><a>Home</a></li>
-          <li>
-            <details>
-              <summary>About</summary>
-              <ul className="bg-base-100 rounded-t-none p-2">
-                <li><a>Home</a></li>
-                <li><a>About</a></li>
-              </ul>
-            </details>
-          </li>
+          <li><a>About</a></li>
         </ul>
       </div>
     </div>

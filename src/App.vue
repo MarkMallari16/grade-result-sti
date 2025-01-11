@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import NavBar from "./components/NavBar.vue";
+import Footer from "./components/Footer.vue";
 
 const prelim = ref(null);
 const midterm = ref(null);
@@ -115,7 +116,6 @@ const clearFields = () => {
   <NavBar />
   <header class="mt-8 mb-4 text-center">
     <h1 class="text-4xl font-black">Grades Calculator</h1>
-    <p class="font-normal">Mark Mallari</p>
   </header>
   <main>
     <div class="flex flex-col justify-center items-center m-5 lg:m-0">
@@ -244,12 +244,14 @@ const clearFields = () => {
         <div class="mt-4">
           <button
             @click="calculateGrade"
-            class="uppercase font-black btn btn-primary w-full"
+            class="uppercase font-black text-black btn btn-primary w-full"
           >
             Calculate
           </button>
         </div>
       </div>
+      <!--Footer-->
+      <Footer />
 
       <!--Modal-->
       <dialog class="modal" ref="resultRef">
