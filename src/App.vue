@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref, useTemplateRef } from "vue";
 import NavBar from "./components/NavBar.vue";
 
-const prelim = ref("");
-const midterm = ref("");
-const preFinal = ref("");
-const finals = ref("");
+const prelim = ref(null);
+const midterm = ref(null);
+const preFinal = ref(null);
+const finals = ref(null);
 const finalGrade = ref(null);
 const remarks = ref(null);
 
@@ -122,6 +122,7 @@ const clearFields = () => {
       <div class="bg-base-200 h-full w-full lg:w-1/2 rounded-lg px-6 lg:px-5 py-10">
         <h1 class="text-2xl font-bold mb-4">Calculate your Final Grade</h1>
         <div>
+          
           <div class="flex gap-4">
             <div class="w-full">
               <label for="prelim" class="font-medium">Prelim</label>
