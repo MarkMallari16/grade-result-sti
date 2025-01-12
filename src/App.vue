@@ -122,6 +122,7 @@ const clearFields = () => {
       <div class="bg-base-200 h-full w-full lg:w-1/2 rounded-lg px-6 lg:px-5 py-10">
         <h1 class="text-2xl font-bold mb-4">Calculate your Final Grade</h1>
         <div>
+          <!--Prelims-->
           <div class="flex gap-4">
             <div class="w-full">
               <label for="prelim" class="font-medium">Prelim</label>
@@ -149,7 +150,7 @@ const clearFields = () => {
             </div>
           </div>
         </div>
-
+        <!--Midterm-->
         <div class="mt-4">
           <div class="flex gap-4">
             <div class="w-full">
@@ -179,6 +180,7 @@ const clearFields = () => {
           </div>
         </div>
 
+        <!--Pre-Finals-->
         <div class="mt-4">
           <div class="flex gap-4">
             <div class="w-full">
@@ -210,6 +212,7 @@ const clearFields = () => {
           </div>
         </div>
 
+        <!--Finals-->
         <div class="mt-4">
           <div class="flex gap-4">
             <div class="w-full">
@@ -250,8 +253,10 @@ const clearFields = () => {
           </button>
         </div>
       </div>
+
       <!--Footer-->
       <Footer />
+      <!--End Footer-->
 
       <!--Modal-->
       <dialog class="modal" ref="resultRef">
