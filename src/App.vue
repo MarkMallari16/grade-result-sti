@@ -58,6 +58,7 @@ const calculateGrade = () => {
     resultRef.value.showModal();
   }
 };
+//validating input
 const validateInput = (field, value) => {
   if (!value) {
     return `${field} is required!`;
