@@ -120,7 +120,7 @@ const clearFields = () => {
   </header>
   <main>
     <div class="flex flex-col justify-center items-center m-5 lg:m-0">
-      <div class="bg-base-200 h-full w-full lg:w-1/2 rounded-lg px-6 lg:px-5 py-10">
+      <div class="bg-base-200 h-full w-full lg:w-1/2 rounded-lg px-6 lg:px-10 py-10">
         <h1 class="text-2xl font-bold mb-4">Calculate your Final Grade</h1>
         <div>
           <!--Prelims-->
